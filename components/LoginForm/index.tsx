@@ -3,16 +3,20 @@ import { Container, RegisterButton, SignInButton } from './style'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../../lib/firebase";
 import { useRouter } from 'next/router';
+import { useAppDispatch } from '../../lib/store/hooks';
+import { singIntoAccount } from '../../lib/store/reducers/userReducer';
 
 const LoginForm = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const router= useRouter()
+    const dispatch =useAppDispatch()
 
     const loginUser=(e:React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
         e.preventDefault()
        signInWithEmailAndPassword(auth, email,password).then((userCredential)=>{
         console.log(userCredential.user);
+        dispatch(singIntoAccount(userCredential.user))
         router.push("/");
         
        })
@@ -26,6 +30,7 @@ const LoginForm = () => {
         e.preventDefault()
         createUserWithEmailAndPassword(auth, email,password).then((userCredential)=>{
           console.log(userCredential.user);
+          dispatch(singIntoAccount(userCredential.user))
           router.push("/");
           
          })
