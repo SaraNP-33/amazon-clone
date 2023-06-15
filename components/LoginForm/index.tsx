@@ -1,18 +1,38 @@
 import React from 'react'
 import { Container, RegisterButton, SignInButton } from './style'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from "../../lib/firebase";
+import { useRouter } from 'next/router';
 
 const LoginForm = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const router= useRouter()
 
-    const loginUser=(e:React.FormEvent<HTMLFormElement>) =>{
+    const loginUser=(e:React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
         e.preventDefault()
-        console.log("logged in");   
+       signInWithEmailAndPassword(auth, email,password).then((userCredential)=>{
+        console.log(userCredential.user);
+        router.push("/");
+        
+       })
+       .catch((error)=>{
+        const errorMessage = error.message;
+        alert(`${errorMessage}`);
+       }) 
     }
 
     const registerUser=(e:React.FormEvent<HTMLButtonElement>) =>{
         e.preventDefault()
-        console.log("registered");  
+        createUserWithEmailAndPassword(auth, email,password).then((userCredential)=>{
+          console.log(userCredential.user);
+          router.push("/");
+          
+         })
+         .catch((error)=>{
+          const errorMessage = error.message;
+          alert(`${errorMessage}`);
+         })  
     }
   
   return (
