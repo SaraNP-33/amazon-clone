@@ -1,5 +1,7 @@
 import React from 'react'
 import { AmazonButton } from '../../styles/sharedstyles'
+import { useAppDispatch } from '../../lib/store/hooks';
+import { addToCart } from '../../lib/store/reducers/cartReducer';
 
 
 interface ProductProps {
@@ -13,8 +15,17 @@ interface ProductProps {
 
 
 const AddToBasketButton = ({ id, title, image, price, rating }: ProductProps) => {
+
+  const dispatch= useAppDispatch()
+
+  const AddToBasket=(e:React.MouseEvent<HTMLButtonElement>) =>{
+    e.preventDefault();
+
+    dispatch(addToCart({ id, title, image, price, rating }))
+
+  }
   return (
-    <AmazonButton>Add To Cart</AmazonButton>
+    <AmazonButton onClick={(e)=>AddToBasket(e)}>Add To Cart</AmazonButton>
   )
 }
 
