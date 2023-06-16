@@ -30,7 +30,7 @@ export default function Home() {
          id={product.id}
          title={product.name}
          price={product.price}
-         rating={4}
+         rating={Math.floor(Math.random() * 4) + 1}
          image={product.images[0].url}
          />
         )
