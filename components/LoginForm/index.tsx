@@ -15,7 +15,6 @@ const LoginForm = () => {
     const loginUser=(e:React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
         e.preventDefault()
        signInWithEmailAndPassword(auth, email,password).then((userCredential)=>{
-        console.log(userCredential.user);
         dispatch(singIntoAccount(userCredential.user))
         router.push("/");
         
@@ -29,7 +28,6 @@ const LoginForm = () => {
     const registerUser=(e:React.FormEvent<HTMLButtonElement>) =>{
         e.preventDefault()
         createUserWithEmailAndPassword(auth, email,password).then((userCredential)=>{
-          console.log(userCredential.user);
           dispatch(singIntoAccount(userCredential.user))
           router.push("/");
           

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "./style";
 import StarIcon from "@mui/icons-material/Star";
 
@@ -6,11 +6,13 @@ interface RatingProps {
   ratingNumber: number;
 }
 
-const Rating = ({ ratingNumber }: RatingProps) => {
+const Rating = ({  ratingNumber }: RatingProps) => {
+    // ratingNumber=  Math.floor(Math.random() * 4) + 1;
+
   return (
     <Container>
       {Array(ratingNumber)
-        .fill(<StarIcon className="product__star" />)
+        .fill(<StarIcon key={ratingNumber} className="product__star" />)
         .map((item) => (
           <p>{item}</p>
         ))}

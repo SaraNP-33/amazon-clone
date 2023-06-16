@@ -5,9 +5,17 @@ import {
   ProductRows,
 } from "../styles/homestyles";
 import Product from "../components/Product";
+import useProducts from "../components/hooks/useProducts";
+import { ProductType } from "../types/product";
+
 
 
 export default function Home() {
+  const {loading, error, data}=useProducts();
+
+  if(loading) return <p>Loading...</p>
+  if (error) return <p>Oops something is wrong.</p>
+
   return (
     <HomeContainer>
        <BackgroundImg
@@ -15,20 +23,18 @@ export default function Home() {
         alt="Amazon Background"
       />
       <ProductRows>
-      <Product
-      id="123569587416"
-      title="Barbell"
-      price={10.99}
-      rating={4}
-      image="https://images-na.ssl-images-amazon.com/images/I/71-Ot5pke1L._ACSL1500_.jpg"
-      />
-      <Product
-      id="123569587416"
-      title="Barbell"
-      price={10.99}
-      rating={4}
-      image="https://images-na.ssl-images-amazon.com/images/I/71-Ot5pke1L._ACSL1500_.jpg"
-      />
+      {!!data && data?.products.map((product: ProductType)=>{
+        return(
+         <Product
+         key={product.id}
+         id={product.id}
+         title={product.name}
+         price={product.price}
+         rating={4}
+         image={product.images[0].url}
+         />
+        )
+      })}
       </ProductRows>
     </HomeContainer>
   )
