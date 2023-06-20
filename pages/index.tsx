@@ -7,6 +7,7 @@ import {
 import Product from "../components/Product";
 import useProducts from "../components/hooks/useProducts";
 import { ProductType } from "../types/product";
+import Link from "next/link";
 
 
 
@@ -25,14 +26,15 @@ export default function Home() {
       <ProductRows>
       {!!data && data?.products.map((product: ProductType)=>{
         return(
+          <Link href={`/product/${product.id}`} key={product.id}>
          <Product
-         key={product.id}
          id={product.id}
          title={product.name}
          price={product.price}
          rating={Math.floor(Math.random() * 4) + 1}
          image={product.images[0].url}
          />
+         </Link>
         )
       })}
       </ProductRows>
