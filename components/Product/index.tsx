@@ -16,7 +16,11 @@ interface ProductProps {
 const Product = ({ id, title, image, price, rating }: ProductProps) => {
   return (
     <ProductContainer>
-      <img src={image} alt={title} />
+      <picture>
+        <source srcSet={image} type="image/webp" />
+        <img src="https://media.graphassets.com/E5jUCkdvRH2qYjf3xU9l" alt={title} />
+      </picture>
+      
       <Info>
         <Title>{title}</Title>
         <Price itemPrice={price} />

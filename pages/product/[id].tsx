@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Container, Main } from "../../styles/sharedstyles";
 import Advert from "../../components/Advert";
 import useProduct from "../../components/hooks/useProduct";
+import ProductDetails from "../../components/ProductDetails";
 
 export default function ProductInfo(){
 
@@ -23,6 +24,7 @@ export default function ProductInfo(){
         <Container>
             <Main>
                 <Advert/>
+                <ProductDetails product={product}/>
             </Main>
         </Container>
     )
