@@ -25,7 +25,7 @@ const Header = () => {
   return (
     <Nav> <Link href="/">
     <Logo
-      src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+      src="/_next/image?url=%2F/public/amazon_PNG11.png&w=1080&q=75"
       alt="Amazon Logo"
       width={100}
       height={100}
