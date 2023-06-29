@@ -7,6 +7,7 @@ import { selectUser, signOutFromAccount } from '../../lib/store/reducers/userRed
 import { auth } from '../../lib/firebase';
 import { useRouter } from 'next/router';
 import { selectCartItemsCount } from '../../lib/store/reducers/cartReducer';
+import AmazonLogo from '../../public/amazon_PNG11.png';
 const Header = () => {
 
   const user =useAppSelector(selectUser)
@@ -25,7 +26,7 @@ const Header = () => {
   return (
     <Nav> <Link href="/">
     <Logo
-      src="/_next/image?url=%2F/public/amazon_PNG11.png&w=1080&q=75"
+      src={AmazonLogo}
       alt="Amazon Logo"
       width={100}
       height={100}
